@@ -66,7 +66,7 @@ def meet_create(request):
         form = ItemForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
-            post.meet_writer = request.user           
+            post.username = request.user           
             post.save()
             return redirect('./')
     else:
