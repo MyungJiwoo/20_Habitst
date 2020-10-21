@@ -34,3 +34,7 @@ HABITST 서비스란?
 >- 제목/내용/이미지/글
 >- 조회수/좋아요수
 >- 모임 카테고리
+
+### >Login/Signup
+>- Customuser 사용
+>- Social Login 
