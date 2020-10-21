@@ -29,8 +29,10 @@ class Tester(models.Model):
     Music = models.IntegerField(default=0)
     Exercise = models.IntegerField(default=0)
     Travel = models.IntegerField(default=0)
-  
     result = models.ForeignKey(Book, on_delete=models.CASCADE, null=True, blank=True)
+    
+    def __str__(self):
+        return self.name
 
 
 # 2. 질문 데이터

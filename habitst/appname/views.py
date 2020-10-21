@@ -28,6 +28,10 @@ def new_post(request):
     form = PostForm()
     return render(request, 'new_post.html', {'form': form})
 
+
+
+
+
 def main(request):
     sort = request.GET.get('sort','')
     if sort == 'likes':
@@ -87,12 +91,12 @@ def read(request):
     return redirect('main')
 
 def update(request, pk):   
+    if not request.user.is_active:
+        signin_form = SigninForm()
+        return render(request, 'appname/signin.html', {'signin_form': signin_form})
     post = get_object_or_404(Post, pk=pk)
-    print(post)
-    print("여긴가")
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES, instance=post)
-        print(form)
         if form.is_valid():
             form = form.save(commit=False)
             form.save()
@@ -103,6 +107,9 @@ def update(request, pk):
     
 
 def delete(request, pk):
+    if not request.user.is_active:
+        signin_form = SigninForm()
+        return render(request, 'appname/signin.html', {'signin_form': signin_form})
     post = get_object_or_404(Post,pk=pk)
     post.delete()
     return redirect('main')
@@ -142,20 +149,19 @@ def signup(request):
     if request.method == "POST":
         form = UserForm(request.POST,request.FILES)
         if form.is_valid():
-            new_user = CustomUser.objects.create_user(
-            username=form.cleaned_data['username'],
+            new_user = CustomUser.objects.create_user(username=form.cleaned_data['username'],
             email = form.cleaned_data['email'],
             password = form.cleaned_data['password'],
             nickname = form.cleaned_data['nickname'],
             phone_number = form.cleaned_data['phone_number'],
             profile_image = form.cleaned_data['profile_image'])
-            login(request, new_user)
+            login(request, new_user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('main')
         else:
             return HttpResponse("회원가입 실패!")
     else:
         form = UserForm()
-        return render(request,'appname/signup.html',{})
+        return render(request,'appname/signup.html',{'form':form})
 
 def comment(request,post_id):
     if not request.user.is_active:
@@ -377,3 +383,4 @@ def search(request):
     
     else:
         return render(request, 'appname/search.html')
+

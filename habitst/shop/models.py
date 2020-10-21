@@ -33,7 +33,7 @@ class Item(models.Model):
     is_public = models.BooleanField(default=True, db_index=True)
     created_at = models.DateTimeField(auto_now_add=True,null=True)
     updated_at = models.DateTimeField(auto_now=True)
-    username = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,default='', null=True)
+    username = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,default='')
     hashtag_field = models.CharField(max_length=200, blank=True) #해시태그
     #hashtags = models.ManyToManyField('Hashtag', blank=True) #해시태그
     place=models.CharField(max_length=200, blank=True) #장소

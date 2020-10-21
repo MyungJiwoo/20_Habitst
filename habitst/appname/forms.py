@@ -2,6 +2,7 @@ from django import forms
 from .models import Post, CustomUser, Comment, Hashtag, ReComment
 
 from .models import Post, CustomUser, Comment, Hashtag
+
 from django_summernote.widgets import SummernoteWidget
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth import get_user_model
@@ -14,7 +15,8 @@ class PostForm(forms.ModelForm):
         fields = ['title','content','image','hashtag_field']
         widgets = {
             'content' : SummernoteWidget(),
-        }     
+
+        }
 
 class SigninForm(forms.ModelForm):
     class Meta:
@@ -28,9 +30,9 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ['username','email','password','nickname','phone_number','profile_image']
-        # help_texts = {
-        #     'username': None,
-        # }
+        help_texts = {
+            'username': None,
+        }
 
 class CommentForm(forms.ModelForm):
     class Meta:
@@ -38,8 +40,6 @@ class CommentForm(forms.ModelForm):
         fields = ['text']
 
 class ReCommentForm(forms.ModelForm):
-
-    
     class Meta:
         model = ReComment
         fields = ['text','comment']

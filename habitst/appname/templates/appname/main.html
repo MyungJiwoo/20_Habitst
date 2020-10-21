@@ -65,11 +65,9 @@
             <a href="{% url 'more' %}?id={{post.id}}">자세히</a><hr>
             {{post.writer}} 회원님
             <div class="nav ftco-animate nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-              {% if user == post.writer %}
-              <a class="nav-link" id="v-pills-mission-tab" href="{% url 'update' pk=post.pk %}"  role="tab" aria-controls="v-pills-goal" aria-selected="false">수정하기</a>        
+              <a class="nav-link" id="v-pills-goal-tab" href="{% url 'update' pk=post.pk %}"  role="tab" aria-controls="v-pills-goal" aria-selected="false">수정하기</a>        
               <a class="nav-link" id="v-pills-mission-tab" href="{% url 'delete' pk=post.pk %}"  role="tab" aria-controls="v-pills-mission" aria-selected="false">삭제하기</a>  
-              {% endif %}  
-            </div>
+              </div>
           </div>
           
         </div>
