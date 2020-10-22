@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from appname.models import CustomUser
+from shop.models import Item
 from django.db import models
 from django.conf import settings
 from django.db.models import (Model, TextField, DateTimeField, ForeignKey,
@@ -15,7 +16,7 @@ class MessageModel(Model):
     the message body.
 
     """
-    
+   
     user = ForeignKey(CustomUser, on_delete=CASCADE, verbose_name='user',
                       related_name='from_user', db_index=True)
     recipient = ForeignKey(CustomUser, on_delete=CASCADE, verbose_name='recipient',
@@ -23,7 +24,7 @@ class MessageModel(Model):
     timestamp = DateTimeField('timestamp', auto_now_add=True, editable=False,
                               db_index=True)
     body = TextField('body')
-
+    
     def __str__(self):
         return str(self.id)
 

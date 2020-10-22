@@ -30,7 +30,7 @@
 					<p lang="ko">주최자 : {{posts.username}}</p>
 					<div class="withme-con-but">
 						<a href="#">모임멤버</a>
-						<a href="{% url 'core:chat' %}"><img class="level-img" src="#">주최자와 1대1 문의</a>
+						<a href="{% url 'core:chat' name=posts.username %}"><img class="level-img" src="#">주최자와 1대1 문의</a>
 						<!-- 모임멤버 클릭하면 나오는 html -->
 						<!-- <div class="if-click-withme">
 							<p lang="ko">모임멤버</p>

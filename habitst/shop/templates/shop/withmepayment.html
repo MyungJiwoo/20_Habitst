@@ -27,7 +27,7 @@
 					<p lang="ko">모임 장소 : {{posts.place}}</p>
 					<p lang="ko">*</p>
 					<p lang="ko">회비 : {{posts.amount}}</p>
-					<p lang="ko">주최자 : {{posts.username}}</p>
+					<p lang="ko">주최자 : {{posts.meet_writer}}</p>
 				</div>
 			</div>
 			<div>
@@ -46,9 +46,8 @@
 			</div>
 		</div>
 		<div class="withme-button">
-			<h3>계약금 얼마</h3>
-			
-			<a href="{% url 'shop:order_new' posts.name %}">결제하기</a>
+			<h3>계약금 얼마</h3>		
+			<a href="{% url 'shop:order_new' posts.pk %}">결제하기</a>
 		</div>
 	</div>
 </body>
