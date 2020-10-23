@@ -6,7 +6,6 @@ from django.http import HttpResponseRedirect
 # from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.http import HttpResponse
-
 from .forms import CustomUserChangeForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect 
@@ -158,10 +157,10 @@ def signup(request):
             login(request, new_user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('main')
         else:
-            return HttpResponse("회원가입 실패!")
+            return HttpResponse('실패')
     else:
         form = UserForm()
-        return render(request,'appname/signup.html',{'form':form})
+    return render(request,'appname/signup.html',{'form':form})
 
 def comment(request,post_id):
     if not request.user.is_active:

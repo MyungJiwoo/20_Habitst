@@ -11,8 +11,7 @@ from rest_framework.authentication import SessionAuthentication
 from habitst import settings
 from core.serializers import MessageModelSerializer, UserModelSerializer
 from core.models import MessageModel
-
-
+from shop.models import Item,Order
 class CsrfExemptSessionAuthentication(SessionAuthentication):
     """
     SessionAuthentication scheme used by DRF. DRF's SessionAuthentication uses
@@ -56,6 +55,13 @@ class MessageModelViewSet(ModelViewSet):
         serializer = self.get_serializer(msg)
         return Response(serializer.data)
 
+# class RecipientView(TemplateView):
+#     template_name = 'core/chat.html'
+#     def get(self,request,name):
+#         ctx = {}
+#         recipient = get_object_or_404(CustomUser,username=name)
+#         ctx['recipient'] = recipient
+#         return self.render_to_response(ctx)
 
 class UserModelViewSet(ModelViewSet):
     queryset = CustomUser.objects.all()

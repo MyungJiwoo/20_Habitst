@@ -29,7 +29,7 @@ class SigninForm(forms.ModelForm):
 class UserForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ['username','email','password','nickname','phone_number','profile_image']
+        fields = ['username','password','email','nickname','phone_number','profile_image']
         help_texts = {
             'username': None,
         }

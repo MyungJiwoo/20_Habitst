@@ -33,7 +33,9 @@ function drawMessage(message) {
                     </div>
                 </div>
             </li>`;
+            
     $(messageItem).appendTo('#messages');
+    
 }
 
 function getConversation(recipient) {
@@ -41,8 +43,10 @@ function getConversation(recipient) {
         messageList.children('.message').remove();
         for (let i = data['results'].length - 1; i >= 0; i--) {
             drawMessage(data['results'][i]);
+            
         }
         messageList.animate({scrollTop: messageList.prop('scrollHeight')});
+        
     });
 
 }
@@ -53,6 +57,7 @@ function getMessageById(message) {
         if (data.user === currentRecipient ||
             (data.recipient === currentRecipient && data.user == currentUser)) {
             drawMessage(data);
+           
         }
         messageList.animate({scrollTop: messageList.prop('scrollHeight')});
     });
@@ -61,7 +66,8 @@ function getMessageById(message) {
 function sendMessage(recipient, body) {
     $.post('/core/api/v1/message/', {
         recipient: recipient,
-        body: body
+        body: body,
+        
     }).fail(function () {
         alert('Error! Check console!');
     });

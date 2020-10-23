@@ -14,4 +14,6 @@ urlpatterns = [
     path(r'api/v1/', include(router.urls)),
     path('<str:name>/', login_required(
         RecipientView.as_view(template_name='core/chat.html')),name='chat'),
+    path('', login_required(
+        TemplateView.as_view(template_name='core/chat.html')),name='chat'),
 ]
