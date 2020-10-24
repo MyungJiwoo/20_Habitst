@@ -65,4 +65,5 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path('new_post/', appname.views.new_post, name='new_post'),
     path('new_post/', appname.views.new_post, name='new_post'),
+    path('profile_update/', appname.views.profile_update, name='profile_update'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

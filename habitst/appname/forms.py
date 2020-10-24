@@ -29,7 +29,7 @@ class SigninForm(forms.ModelForm):
 class UserForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ['username','password','email','nickname','phone_number','profile_image']
+        fields = ['username','password','email','nickname','phone_number','profile_image','introducemyself']
         help_texts = {
             'username': None,
         }
@@ -53,6 +53,6 @@ class HashtagForm(forms.ModelForm):
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = get_user_model()
-        fields = ['username', 'email', 'first_name','last_name']
+        fields = ['username','password','nickname','email','introducemyself']
 
 

@@ -31,7 +31,7 @@ class CustomUser(AbstractUser):
     nickname = models.CharField(max_length=20)
     phone_number = models.CharField(max_length=20)
     profile_image = models.ImageField(upload_to='images/', blank=True)
-
+    introducemyself = models.CharField(max_length=50)
 
 
 class SocialPlatform(models.Model):

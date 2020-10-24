@@ -102,7 +102,7 @@ def update(request, pk):
             return redirect('main')
     else:
         form = PostForm(instance=post)
-        return render(request,'appname/create.html',{'form':form})
+        return render(request,'appname/postblog.html',{'form':form})
     
 
 def delete(request, pk):
@@ -153,7 +153,8 @@ def signup(request):
             password = form.cleaned_data['password'],
             nickname = form.cleaned_data['nickname'],
             phone_number = form.cleaned_data['phone_number'],
-            profile_image = form.cleaned_data['profile_image'])
+            profile_image = form.cleaned_data['profile_image'],
+            introducemyself = form.cleaned_data['introducemyself'])
             login(request, new_user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('main')
         else:
@@ -252,11 +253,14 @@ def profile_update(request):
         username = request.POST.get('username')
         new_user_pw = request.POST.get('new_user_pw')
         nickname = request.POST.get('nickname')
-
+        introducemyself = request.POST.get('introducemyself')
+        profile_image = request.POST.get('profile_image')
       
         user.email = email
         user.username = username
         user.nickname = nickname
+        user.introducemyself = introducemyself
+        user.profile_image = profile_image
         user.set_password(new_user_pw)
 
         user.save()
@@ -366,7 +370,38 @@ def more(request):
     return HttpResponseRedirect('appname/main/')
 
 def postblog(request):
-    return render(request, 'appname/postblog.html')
+    if not request.user.is_active:
+        signin_form = SigninForm()
+        return render(request, 'appname/signin.html', {'signin_form': signin_form})
+
+
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.writer = request.user
+            
+            hashtag_field = form.cleaned_data['hashtag_field']
+            str_hashtags = hashtag_field.split('#')
+            list_hashtags = list()    
+
+            for hashtag in str_hashtags:
+                if Hashtag.objects.filter(name=hashtag):
+                    list_hashtags.append(Hashtag.objects.get(name=hashtag))
+                else:
+                    temp_hashtag = HashtagForm().save(commit=False)
+                    temp_hashtag.name = hashtag
+                    temp_hashtag.save()
+                    list_hashtags.append(temp_hashtag)
+                
+            post.save()
+            post.hashtags.add(*list_hashtags)
+
+            return redirect('main')
+    else:
+        form = PostForm()
+        return render(request, 'appname/postblog.html', {'form': form})
+    
 
 def postwithme(request):
     return render(request, 'appname/postwithme.html')
@@ -383,3 +418,28 @@ def search(request):
     else:
         return render(request, 'appname/search.html')
 
+@login_required 
+def profile_update(request):
+    if request.method == 'GET':
+        return render(request, 'appname/profile_update.html')
+
+    elif request.method == 'POST':
+        user = request.user
+        email = request.POST.get('email')
+        username = request.POST.get('username')
+        new_user_pw = request.POST.get('new_user_pw')
+        nickname = request.POST.get('nickname')
+        introducemyself = request.POST.get('introducemyself')
+      
+      
+        user.email = email
+        user.username = username
+        user.nickname = nickname
+        user.introducemyself = introducemyself
+     
+        user.set_password(new_user_pw)
+
+        user.save()
+
+
+        return redirect('main')

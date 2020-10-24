@@ -62,15 +62,15 @@
 }
 
 input[id="cb"] {
-	display: none;
+   display: none;
 }
 
 input[id="cb"] + label {
-	display: inline-block;
-	width: 10px;
-	height: 10px;
-	border: 2px solid #03033f;
-	cursor: pointer;
+   display: inline-block;
+   width: 10px;
+   height: 10px;
+   border: 2px solid #03033f;
+   cursor: pointer;
 }
 
 input[id="cb"]:checked + label {
@@ -110,11 +110,24 @@ input{
     font-family: 'GmarketSansMedium';
     color: #03033f;
     font-size: 18px;
-	width: 230px;
+   width: 230px;
     height: 40px;
     border-style: none !important;
     text-align: center !important;
 }
-input:focus{
+.login-table p input:focus[id="username"]{
     outline: none !important;
 }
+
+/* input[id="password"]{
+    font-family: 'GmarketSansMedium';
+    color: #03033f;
+    font-size: 18px;
+   width: 230px;
+    height: 40px;
+    border-style: none;
+    text-align: center;
+}
+input:focus[id="password"]{
+    outline: none;
+} */

@@ -13,16 +13,17 @@
 }
 
 .post-box{
-    width: 820px;
-    height: 480px;
+    width: 1000px;
+    height: 770px;
     border: solid 7px #03033f;
-    /* text-align: center;
+    text-align: center;
     margin: 0 auto;
-    /* margin-top: 60px; */
+    margin-top: 60px;
+    margin-bottom: 60px;
     padding-left: 50px;
-    padding-right: 50px; */
-    padding-bottom: 7px;
-    padding-top: 3px;
+    padding-right: 50px;
+    padding-bottom: 30px;
+    padding-top: 30px;
 }
 
 .style{
@@ -45,7 +46,7 @@
 
 .bot-bar{
     /* border: solid 3px #03033f; */
-    width: 1560px;
+    width: 880px;
     height: 50px;
     text-align: center;
     margin: 0 auto;
@@ -88,19 +89,39 @@
     margin-top: 3px;
 }
 
+#id_title{
+    width: 700px;
+    height: 50px;
+    font-size: 40px;
+}
+
+#id_hashtag_field{
+    width: 700px;
+    
+}
+
+#id_image{
+    color:grey;
+}
+
+/* .content{
+    text-align: center;
+    color : gray;
+}*/
+
 #save{
-    float: right;
-    margin-top: -7px;
+    float : right;
     font-family: 'GmarketSansMedium';
     border-radius: 27px;
     background-color: #03033f;
     border: 0;
     outline: 0;
     color: white;
-    font-size: 30px;
-    padding: 8px;
-    padding-right: 20px;
-    padding-left: 20px;
+    padding: 5px;
+    padding-right: 10px;
+    padding-left: 10px; 
+    margin-bottom: 300px;
+    width: 100px;
 }
 #save:hover{
     background-color: #ffe31b;
@@ -128,3 +149,17 @@ h3{
     color: #03033f;
     text-align: left;
 }
+
+/* input{
+    display: inline; 
+    font-family: 'GmarketSansMedium';
+    color: #03033f;
+    font-size: 18px;
+	width: 230px;
+    height: 40px;
+    border-style: none !important;
+    text-align: center !important;
+}
+input:focus{
+    outline: none !important;
+} */
