@@ -93,7 +93,7 @@ def withmepayment(request,pk):
     posts = Item.objects.get(pk=pk)
     user = request.user
     
-    if not posts.member.filter(id=user.id).exists():
+    if posts.member.filter(id=user.id).exists():
         posts.member.add(user)
     return render(request, 'shop/withmepayment.html', {'posts':posts})
     
