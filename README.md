@@ -38,7 +38,7 @@ HABITST 서비스란?
 >- redis-server 적용(채팅)
 
 실행방법 : 
->-  redis설치 (필수)
+>-  redis설치 및  (필수)
 >- pip install django-allauth
 >- pip install django-crispy-forms
 >- pip install django-summernote
