@@ -48,4 +48,4 @@ HABITST 서비스란?
 >- pip install channels_redis
 >- python -m pip install Pillow
 >- python manage.py runserver
-runserver시 no module에 관한 부분은 pip install django_xxxxxx형태로 설치
+>- runserver시 no module에 관한 부분은 pip install django_xxxxxx형태로 설치
