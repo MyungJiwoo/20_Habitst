@@ -6,7 +6,6 @@ from django.http import HttpResponseRedirect
 # from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.http import HttpResponse
-
 from .forms import CustomUserChangeForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect 
@@ -27,6 +26,10 @@ from django.contrib import messages
 def new_post(request):
     form = PostForm()
     return render(request, 'new_post.html', {'form': form})
+
+
+
+
 
 def main(request):
     sort = request.GET.get('sort','')
@@ -87,22 +90,25 @@ def read(request):
     return redirect('main')
 
 def update(request, pk):   
+    if not request.user.is_active:
+        signin_form = SigninForm()
+        return render(request, 'appname/signin.html', {'signin_form': signin_form})
     post = get_object_or_404(Post, pk=pk)
-    print(post)
-    print("여긴가")
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES, instance=post)
-        print(form)
         if form.is_valid():
             form = form.save(commit=False)
             form.save()
             return redirect('main')
     else:
         form = PostForm(instance=post)
-        return render(request,'appname/create.html',{'form':form})
+        return render(request,'appname/postblog.html',{'form':form})
     
 
 def delete(request, pk):
+    if not request.user.is_active:
+        signin_form = SigninForm()
+        return render(request, 'appname/signin.html', {'signin_form': signin_form})
     post = get_object_or_404(Post,pk=pk)
     post.delete()
     return redirect('main')
@@ -142,20 +148,20 @@ def signup(request):
     if request.method == "POST":
         form = UserForm(request.POST,request.FILES)
         if form.is_valid():
-            new_user = CustomUser.objects.create_user(
-            username=form.cleaned_data['username'],
+            new_user = CustomUser.objects.create_user(username=form.cleaned_data['username'],
             email = form.cleaned_data['email'],
             password = form.cleaned_data['password'],
             nickname = form.cleaned_data['nickname'],
             phone_number = form.cleaned_data['phone_number'],
-            profile_image = form.cleaned_data['profile_image'])
-            login(request, new_user)
+            profile_image = form.cleaned_data['profile_image'],
+            introducemyself = form.cleaned_data['introducemyself'])
+            login(request, new_user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('main')
         else:
-            return HttpResponse("회원가입 실패!")
+            return HttpResponse('실패')
     else:
         form = UserForm()
-        return render(request,'appname/signup.html',{})
+    return render(request,'appname/signup.html',{'form':form})
 
 def comment(request,post_id):
     if not request.user.is_active:
@@ -247,11 +253,14 @@ def profile_update(request):
         username = request.POST.get('username')
         new_user_pw = request.POST.get('new_user_pw')
         nickname = request.POST.get('nickname')
-
+        introducemyself = request.POST.get('introducemyself')
+        profile_image = request.POST.get('profile_image')
       
         user.email = email
         user.username = username
         user.nickname = nickname
+        user.introducemyself = introducemyself
+        user.profile_image = profile_image
         user.set_password(new_user_pw)
 
         user.save()
@@ -286,9 +295,11 @@ def mygroup(request):
 def mypage(request):
     order_list = Order.objects.filter(user=request.user)
     test_list = Tester.objects.filter(name=request.user).last()
+    posts = Post.objects.all()
     return render(request, 'appname/mypage.html', {
         'order_list': order_list,
         'test_list' : test_list,
+        'posts': posts,
     })
 
 def review(request):
@@ -361,7 +372,35 @@ def more(request):
     return HttpResponseRedirect('appname/main/')
 
 def postblog(request):
-    return render(request, 'appname/postblog.html')
+    if not request.user.is_active:
+        return HttpResponse("Can't write a post without Sign In")
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.writer = request.user
+            
+            hashtag_field = form.cleaned_data['hashtag_field']
+            str_hashtags = hashtag_field.split('#')
+            list_hashtags = list()    
+
+            for hashtag in str_hashtags:
+                if Hashtag.objects.filter(name=hashtag):
+                    list_hashtags.append(Hashtag.objects.get(name=hashtag))
+                else:
+                    temp_hashtag = HashtagForm().save(commit=False)
+                    temp_hashtag.name = hashtag
+                    temp_hashtag.save()
+                    list_hashtags.append(temp_hashtag)
+                
+            post.save()
+            post.hashtags.add(*list_hashtags)
+
+            return redirect('main')
+    else:
+        form = PostForm()
+        return render(request, 'appname/postblog.html', {'form': form})
+    
 
 def postwithme(request):
     return render(request, 'appname/postwithme.html')
@@ -377,3 +416,29 @@ def search(request):
     
     else:
         return render(request, 'appname/search.html')
+
+@login_required 
+def profile_update(request):
+    if request.method == 'GET':
+        return render(request, 'appname/profile_update.html')
+
+    elif request.method == 'POST':
+        user = request.user
+        email = request.POST.get('email')
+        username = request.POST.get('username')
+        new_user_pw = request.POST.get('new_user_pw')
+        nickname = request.POST.get('nickname')
+        introducemyself = request.POST.get('introducemyself')
+      
+      
+        user.email = email
+        user.username = username
+        user.nickname = nickname
+        user.introducemyself = introducemyself
+     
+        user.set_password(new_user_pw)
+
+        user.save()
+
+
+        return redirect('main')

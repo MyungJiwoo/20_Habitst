@@ -1,0 +1,189 @@
+/*habittest-main*/
+@font-face {
+   font-family: 'GmarketSansMedium';
+   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+   font-weight: normal;
+   font-style: normal;
+   unicode-range: U+AC00-U+D7A3;
+}
+
+@font-face {
+   font-family: 'GmarketSansLight';
+   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+   font-weight: normal;
+   font-style: normal;
+}
+
+/*한글 글씨체 중 <p>태그를 사용한 것은 'GmarketSansLight'로 설정*/
+p:lang(ko){
+   font-family: 'GmarketSansLight'
+}
+
+#habitst-mypage{
+   font-family: 'GmarketSansLight';
+   margin: 30px auto;
+}
+
+#habitst-mypage hr{
+   border: outset 1.5px #03033F;
+}
+
+#habitst-mypage .mypage-for-grid{
+   display: grid;
+   grid-template-columns: 30% 70%;
+}
+
+#habitst-mypage .mypage-for-grid div{
+   border: #03033F 2.5px solid;
+   position: relative;
+}
+
+#habitst-mypage .mypage-for-grid div h2{
+   text-align: center;
+   background-color: white;
+   margin: auto 220px;
+   position: relative;
+   bottom: 10px;
+   right: 5px;
+}
+
+#habitst-mypage .mypage-for-grid div p{
+   font-family: 'GmarketSansLight';
+   color: black;
+   font-size: 15px;
+}
+
+#habitst-mypage .mypage-for-grid .mypage-update-pro{
+   font-family: 'GmarketSansMedium';
+   color: #FFE31B;
+   padding: 5px;
+   font-size: 15px;
+   margin: 0 auto 5px;
+}
+
+#habitst-mypage .mypage-for-grid .mypage-content-con{
+   position: relative;
+   top: -20px;
+}
+
+#habitst-mypage .mypage-for-grid .mypage-update-pro p{
+   text-align: right !important;
+   font-size: 10px;
+}
+
+#habitst-mypage .mypage-for-grid .mypage-update-pro p a
+{
+   color: #FFE31B;
+   background-color: #03033F;
+   padding: 5px;
+   border: #03033F 1.5px solid;
+   border-radius: 5px;
+}
+#habitst-mypage .mypage-for-grid div div{
+   border: none;
+}
+
+#habitst-mypage .mypage-for-grid div p a{
+   color: #03033F;
+}
+
+#habitst-mypage .mypage-for-grid div .blue{
+   color: blue;
+}
+
+#habitst-mypage .mypage-for-grid div .orange{
+   color: orange;
+}
+
+#habitst-mypage .col-sm-12 .mypage-for-grid img{
+   text-align: center;
+   width: 300px;
+   height: 300px;
+}
+
+#habitst-mypage .col-sm-12 .mypage-for-grid p{
+   text-align: center;
+}
+
+/* #habitst-mypage .col-sm-12 hr{
+   border: #03033F 1px outset;
+} */
+
+#habitst-mypage .col-sm-12 h2{
+   text-align: left;
+   font-family: 'GmarketSansMedium';
+}
+
+#habitst-mypage .col-sm-12 h2 a{
+   color: #FFE31B;
+}
+
+#habitst-mypage .col-sm-12 p{
+   font-family: 'GmarketSansLight';
+   margin: auto 30px;
+}
+
+#habitst-mypage .col-sm-12 div p .mypage-test-res-user{
+   font-family: 'GmarketSansMedium';
+   color: #03033F;
+   font-size: 30px;
+   border: none;
+   background-color: white;
+}
+
+#habitst-mypage .col-sm-12 .mypage-test-res{
+   text-align: center;
+   color: black;
+   font-size: 25px;
+}
+
+#habitst-mypage .col-sm-12 .mypage-test-res a{
+   font-family: 'GmarketSansMedium';
+   color: #FFE31B;
+   background-color: #03033F;
+   padding: 5px;
+   margin: 0 auto;
+   font-size: 15px;
+   border: #03033F 2.5px solid;
+   border-radius: 3px;
+}
+
+#habitst-mypage .col-sm-12 .mypage-my-payment{
+   margin: 40px auto;
+   text-align: center;
+   color: black;
+}
+
+#habitst-mypage .col-sm-12 .mypage-my-payment h3{
+   font-family: 'GmarketSansMedium';
+   position: relative;
+   top: 23px;
+   width: 200px;
+   margin: 0 auto;
+   font-size: 30px;
+   text-align: center;
+   background-color: white;
+}
+
+#habitst-mypage .col-sm-12 .mypage-my-payment h3 a{
+   color: #FFE31B;
+}
+
+#habitst-mypage .col-sm-12 .mypage-my-payment hr{
+   margin: 0 auto 40px;
+}
+
+#habitst-mypage .col-sm-12 .mypage-my-payment table{
+   border: #03033F 2.5px auto;
+}
+
+/* 내가 쓴 글 */
+
+.col-md-3 .destination img{
+   width: 100%;
+}
+
+.col-md-3 .destination .text div a h6{
+   font-family: 'GmarketSansMedium';
+   color: #FFE31B;
+}

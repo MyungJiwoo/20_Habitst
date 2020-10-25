@@ -7,7 +7,7 @@ from django_summernote import fields as summer_fields
 # Create your models here.
 class Post(models.Model):
     title = models.CharField(max_length=200)
-    content = models.TextField(null=True)
+    content = models.TextField()
     image = models.ImageField(upload_to='images/', blank=True)
     writer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="writer", default="")
     hashtag_field = models.CharField(max_length=200, blank=True)
@@ -31,7 +31,7 @@ class CustomUser(AbstractUser):
     nickname = models.CharField(max_length=20)
     phone_number = models.CharField(max_length=20)
     profile_image = models.ImageField(upload_to='images/', blank=True)
-
+    introducemyself = models.CharField(max_length=50)
 
 
 class SocialPlatform(models.Model):

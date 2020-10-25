@@ -1,0 +1,31 @@
+{% extends 'appname/base.html' %}
+{% load static %}
+
+{% block content %}
+<br><br><br>
+
+<form action="" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="form-group">
+    아이디 : <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}">
+  </div>
+  <div class="form-group">
+    새 비밀번호 : <input type="password" class="form-control" id="new_user_pw" name="new_user_pw"
+      placeholder="변경할 비밀번호를 입력하세요.">
+  </div>
+  <div class="form-group">
+    닉네임 : <input type="text" class="form-control" id="nickname" name="nickname" value="{{ user.nickname }}">
+  </div>
+  <div class="form-group">
+    이메일 : <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}">
+  </div>
+  <div class="form-group">
+    소개 : <input type="text" class="form-control" id="introducemyself" name="introducemyself"
+      value="{{ user.introducemyself }}">
+  </div>
+  
+
+  <input type="submit" class="btn btn-primary"></button>
+</form>
+
+{% endblock %}

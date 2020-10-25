@@ -11,10 +11,10 @@ from appname import views as accounts_views
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('', appname.views.main, name='main'),
-    # path('main2', appname.views.main2, name='main2'),
+    path('main2', appname.views.main2, name='main2'),
     path('create', appname.views.create, name='create'),
     path('update/<int:pk>', appname.views.update, name='update'),
-    path('delete/<int:pk>', ap  pname.views.delete, name='delete'),
+    path('delete/<int:pk>', appname.views.delete, name='delete'),
     path('delete_comment/<int:pk>', appname.views.delete_comment, name='delete_comment'),
     path('delete_recom/<int:pk>', appname.views.delete_recom, name='delete_recom'),
     path('signin', appname.views.signin, name='signin'),
@@ -23,10 +23,10 @@ urlpatterns = [
     path('create_recomment/<int:post_id>', appname.views.create_recomment , name='create_recomment'),
     path('hashtag/<str:hashtag_name>', appname.views.hashtag, name='hashtag'),
     path('like/<int:pk>',appname.views.like, name='like'),
-    path('category', appname.views.category, name='category'), #없음
+    path('category', appname.views.category, name='category'),
     path('habittest', appname.views.habittest, name='habittest'),
     path('myblog', appname.views.myblog, name='myblog'),
-    path('mygroup', appname.views.mygroup, name='mygroup'), #없음
+    path('mygroup', appname.views.mygroup, name='mygroup'),
     path('mypage', appname.views.mypage, name='mypage'),
     path('review', appname.views.review, name='review'),
     #path('search', appname.views.search, name='search'), #뷰스에 search가 두개가 있더라고요

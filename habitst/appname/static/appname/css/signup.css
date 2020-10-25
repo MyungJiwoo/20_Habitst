@@ -59,39 +59,39 @@
 #test:hover{
     background-color: #ffe31b;
 }
-/* 
+
 input[id="username"]{
     font-family: 'GmarketSansMedium';
     color: #03033f;
     font-size: 18px;
-	width: 230px;
+   width: 230px;
     height: 40px;
     border-style: none;
     text-align: center;
 }
 input:focus[id="username"]{
     outline: none;
-} */
+}
 
 input{
     display: inline; 
     font-family: 'GmarketSansMedium';
     color: #03033f;
     font-size: 18px;
-	width: 230px;
+   width: 230px;
     height: 40px;
     border-style: none !important;
     text-align: center !important;
 }
-input:focus{
-    outline: none !important;
+input:focus[class="signin-table"]{
+    outline: none;
 }
 
 /* input[id="email"]{
     font-family: 'GmarketSansMedium';
     color: #03033f;
     font-size: 18px;
-	width: 230px;
+   width: 230px;
     height: 40px;
     border-style: none;
     text-align: center;
@@ -105,7 +105,7 @@ input[id="password"]{
     font-family: 'GmarketSansMedium';
     color: #03033f;
     font-size: 18px;
-	width: 230px;
+   width: 230px;
     height: 40px;
     border-style: none;
     text-align: center;
@@ -118,7 +118,7 @@ input[id="nickname"]{
     font-family: 'GmarketSansMedium';
     color: #03033f;
     font-size: 18px;
-	width: 230px;
+   width: 230px;
     height: 40px;
     border-style: none;
     text-align: center;
@@ -131,7 +131,7 @@ input[id="phonenumber"]{
     font-family: 'GmarketSansMedium';
     color: #03033f;
     font-size: 18px;
-	width: 230px;
+   width: 230px;
     height: 40px;
     border-style: none;
     text-align: center;
@@ -144,7 +144,7 @@ input[id="profileimage"]{
     font-family: 'GmarketSansMedium';
     color: #03033f;
     font-size: 18px;
-	width: 230px;
+   width: 230px;
     height: 40px;
     border-style: none;
     text-align: center;

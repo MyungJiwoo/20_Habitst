@@ -12,7 +12,9 @@
     <div class="row no-gutters slider-text js-height align-items-center justify-content-start" data-scrollax-parent="true">
       <div class="col-md-9 ftco-animate">
   <p>
-    <br><br> 해비슷 님에게만 드리는 9월 한정 혜택 <br>
+
+    <br><br> 해비슷 님에게만 드리는 9월 한정 혜택 <br>지금 로그인 한 사람 : {{ user.username }}
+
   </p>
   <h3 class="mb-4">
     <strong>
@@ -39,32 +41,35 @@
 
 <div class="row">
   {% for post in posts %}
+
   <div class="col-md-3 ftco-animate"> 
+    
         <div class="destination">
+          
           {% if post.image %}
-        <a href="{% url 'more' %}?id={{post.id}}" class="img img-2 d-flex justify-content-center align-items-center"><img class="img img-2 d-flex justify-content-center align-items-center" src="{{ post.image.url }}" alt="" width=100%></a>
+          <a href="{% url 'more' %}?id={{post.id}}" class="img img-2 d-flex justify-content-center align-items-center"><img class="img img-2 d-flex justify-content-center align-items-center" src="{{ post.image.url }}" alt="" width=100%></a>
           {% endif %}  
       
           </a>
+          
           <div class="text p-3">
             <div class="d-flex">
               <div class="one">
-                <h3><a href="{% url 'more' %}">
-                  {{post.title}}
-                </a></h3>
-                <p class="rate">
-                  <i class="icon-star"></i>
-                  <i class="icon-star"></i>
-                  <i class="icon-star"></i>
-                  <i class="icon-star"></i>
-                  <i class="icon-star-o"></i>
-                </p>
+                <a href="{% url 'more' %}?id={{post.id}}">
+                <h6>{{post.title}}</h6>
+                </a>
               </div>
             </div>
-         
             <hr>
-            <p>{{post.content}}</p> <hr>
+            <p>{{post.content|slice:":5"|safe}}....</p>
+            <a href="{% url 'more' %}?id={{post.id}}">자세히</a><hr>
+            {{post.writer}} 회원님
+            <div class="nav ftco-animate nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <a class="nav-link" id="v-pills-goal-tab" data-toggle="pill" href="{% url 'update' pk=post.pk %}"  role="tab" aria-controls="v-pills-goal" aria-selected="false">수정하기</a>        
+              <a class="nav-link" id="v-pills-mission-tab" data-toggle="pill" href="{% url 'delete' pk=post.pk %}"  role="tab" aria-controls="v-pills-mission" aria-selected="false">삭제하기</a>  
+              </div>
           </div>
+          
         </div>
 
       </div>

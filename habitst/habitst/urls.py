@@ -21,11 +21,12 @@ from django.conf.urls.static import static
 from appname import views as accounts_views
 from django.conf.urls import url
 from appname import views
-from appname import views as accounts_views
+from django.contrib.auth import views as auth_views
 app_name = 'habitst'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', appname.views.main, name='main'),
+    url(r'^core/', include('core.urls', namespace='core')),
     path('main2', appname.views.main2, name='main2'),
     path('create', appname.views.create, name='create'),
     path('update/<int:pk>', appname.views.update, name='update'),
@@ -61,7 +62,8 @@ urlpatterns = [
     #카카오로그인
     path('postblog', appname.views.postblog, name='postblog'),
     path('postwithme', appname.views.postwithme, name='postwithme'),
-
     path('summernote/', include('django_summernote.urls')),
     path('new_post/', appname.views.new_post, name='new_post'),
+    path('new_post/', appname.views.new_post, name='new_post'),
+    path('profile_update/', appname.views.profile_update, name='profile_update'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

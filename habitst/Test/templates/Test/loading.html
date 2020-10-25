@@ -3,49 +3,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title></title>
-    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/re01.css' %}"> -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-          crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&display=swap" rel="stylesheet">
-    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>HABITST loading</title>
+    <link rel="stylesheet" href="{% static 'Test/main.css' %}">
 </head>
-<body class="d-flex flex-column h-100">
-<header>
-    <nav class="navbar">
-        <div class="logo">
-            <a class="navbar-brand" href="{% url 'Test:main' %}"></a>
-        </div>
-    </nav>
-</header>
-<main role="main" class="flex">
-    <div class="container">
-        
-        <br>
-       
-        <br><br>
-        <a href="{% url 'Test:re01' tester.id %}">
-            <button class="go" style="font-family: 'Noto Serif KR', serif;">결과보러 가기</button>
-        </a>
-        <br>
-        <br>
-        <br>
-    </div>
-</main>
-<nav class="navbar">
-    <div class="logo2" style="padding-top: 0%; padding-left: 15px;">
-       
-    </div>
-</nav>
-<footer class="footer py-5">
-    <div class="container">
-      
-    </div>
-</footer>
-
+<body id=Test-loading>
+    <img src="https://trello-attachments.s3.amazonaws.com/5f34bffc3b9f9582ccd7d6c9/506x500/ec79b2e204f95afffb2bdc7afdba6b5f/%ED%95%B4%EB%B9%84%EC%8A%A4%ED%8A%B81.PNG.png">
+    <p><a>HABITST</a>와 함께하는 나에게 잘 맞는 취미생활 알아보기!</p>
+    <a href="{% url 'Test:re01' tester.id %}">
+        <button class="go" style="font-family: 'Noto Serif KR', serif;">결과보러 가기</button>
+    </a>
 </body>
 </html>

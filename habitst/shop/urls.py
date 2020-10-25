@@ -24,5 +24,4 @@ urlpatterns = [
     #path(r'^(?P<pk>\d+)/', views.payment_detail, name='payment_detail'),
     url('withme2', views.withme2, name='withme2'),
     #url('withmepayment', views.withmepayment, name='withmepayment'),
-   
 ]
