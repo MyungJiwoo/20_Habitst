@@ -27,7 +27,16 @@
                   <p>모임이름 : {{item.name}} <br>
                     모임날짜 : {{item.date_select}}</p>
                   주최자 : {{item.username}}</p>
-
+                  참가자 :
+                  {% for order in Order_list %}
+                  {% if order.name == item.name%}
+                  {% if order.status == "paid" %}
+                  <h3>
+                    <p>{{order.user}}님</p>
+                  </h3>
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
                 </a></h3>
         
             </div>
@@ -40,16 +49,7 @@
           <p class="card-text">회비 : {{item.amount|intcomma}}</p>
           <hr>
           <a href="{% url 'shop:order_new' item.id %}" class="btn btn-primary">구매하기</a><br>
-          참가자 :
-          {% for order in Order_list %}
-          {% if order.name == item.name%}
-          {% if order.status == "paid" %}
-          <h3>
-            <p>{{order.user}}님</p>
-          </h3>
-          {% endif %}
-          {% endif %}
-          {% endfor %}
+         
         </div>
       </div>
 

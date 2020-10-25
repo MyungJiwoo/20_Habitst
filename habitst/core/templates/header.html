@@ -40,7 +40,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
        <div class="container" style="background-color:rgba(3,3,63,1); ">
       
-        <a class="navbar-brand" href="{% url 'main' %}"><img id="_logo_back" src="{% static 'appname/images/logo_back.png' %}">&nbsp;&nbsp; HABITST</a>
+        <a class="navbar-brand" href="{% url 'main' %}"><img id="_logo_back" src="{% static 'appname/images/logo_back.png' %}">&nbsp;&nbsp; </a>
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
          </button>
@@ -59,7 +59,7 @@
 
 
         <li class="nav-item active"><a href="Test" class="nav-link">TEST</a></li>
-          <li class="nav-item active" style="width : 101px;"><a href="shop" class="nav-link">WITH ME</a></li>
+          <li class="nav-item active" style="width : 101px;"><a href="{% url 'shop:index' %}" class="nav-link">WITH ME</a></li>
           <!-- <li class="nav-item active"><a href="{% url 'myblog' %}" class="nav-link">BORAD</a></li> -->
           <li class="nav-item active"><a href="{% url 'postblog' %}" class="nav-link">POST</a></li>
             {% if not user.is_authenticated %}

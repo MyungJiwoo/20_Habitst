@@ -295,9 +295,11 @@ def mygroup(request):
 def mypage(request):
     order_list = Order.objects.filter(user=request.user)
     test_list = Tester.objects.filter(name=request.user).last()
+    posts = Post.objects.all()
     return render(request, 'appname/mypage.html', {
         'order_list': order_list,
         'test_list' : test_list,
+        'posts': posts,
     })
 
 def review(request):
@@ -371,10 +373,7 @@ def more(request):
 
 def postblog(request):
     if not request.user.is_active:
-        signin_form = SigninForm()
-        return render(request, 'appname/signin.html', {'signin_form': signin_form})
-
-
+        return HttpResponse("Can't write a post without Sign In")
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():

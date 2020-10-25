@@ -1,9 +1,7 @@
 {% extends 'appname/base.html' %}
 {% load static %}
 {% load humanize %}
-<head>
-    <link rel="stylesheet" href="{% static 'appname/css/mypage.css' %}">
-</head>
+
 {% block content %}
 <div class="container" id="habitst-mypage">
     <div class="row">
@@ -11,18 +9,25 @@
             <div class="mypage-for-grid">
                 {% if user.profile_image %}
                 <img src="{{ user.profile_image.url }}" class="img-responsive thumbnail" alt="img">
+
+                {% else %}
+                <p>이미지가 없습니다.</p>
+
                 {% endif %}
                 <div>
-                    
                     <h2>[ <a>{{ user }}</a>'s PROFILE ]</h2>
-                    <p> <a>USER NAME</a> : {{ user }}</p>
-                    <p>실은 무슨 내용을 넣어야 할 지 모르겠어요.</p>
-                    <br>
-                    <p><a class="blue">def</a> 한줄소개():</p>
-                    <p>&nbsp&nbsp&nbsp&nbsp <a class="blue">print</a>("멋사인처럼 한줄소개!")</p>
-                    <p>&nbsp&nbsp&nbsp&nbsp <a class="blue">print</a>("{{user.introducemyself}}")</p>
-                    <p>&nbsp&nbsp&nbsp&nbsp <a class="orange">return</a> 0</p>
-                    <p>&nbsp&nbsp&nbsp&nbsp<span class="btn-label" ></span><a href="{% url 'profile_update' %}">프로필편집</a></button></p>
+                    <div class="mypage-update-pro">
+                        <p><a href="{% url 'profile_update' %}">프로필편집</a></p>
+                    </div>
+                    <div class="mypage-content-con">
+                        <p> <a>USER NAME</a> : {{ user }}</p>
+                        <p>실은 무슨 내용을 넣어야 할 지 모르겠어요.</p>
+                        <br>
+                        <p><a class="blue">def</a> 한줄소개():</p>
+                        <p>&nbsp&nbsp&nbsp&nbsp <a class="blue">print</a>("멋사인처럼 한줄소개!")</p>
+                        <p>&nbsp&nbsp&nbsp&nbsp <a class="blue">print</a>("HACK YOUR LIFE")</p>
+                        <p>&nbsp&nbsp&nbsp&nbsp <a class="orange">return</a> 0</p>
+                    </div>
                 </div>
             </div>
 
@@ -66,7 +71,7 @@
                             <td>{{ order.paid_at|default:"-" }}</td>
                             {% if order.is_paid_ok %}
                             <td><a href="{% url 'order_cancel' order.imp_uid %}" class="btn btn-danger col-xs-12">
-                                    <iclass="fa fa-times"></i> 주문 취소
+                                    <i class="fa fa-times"></i> 주문 취소
                                 </a></td>
                             {% endif %}
                         </tr>
@@ -74,6 +79,61 @@
                         {% endfor %}
                     </tbody>
                 </table>
+            </div>
+
+            <div class="mypage-my-payment">
+                <h3>[<a>내가 쓴 글</a>]</h3>
+
+                <hr class="mypage-post-hr">
+
+                {% for post in posts %}
+                {% if user == post.writer%}
+
+                <div class="col-md-3 ftco-animate">
+
+                    <div class="destination">
+
+                        {% if post.image %}
+                        <a href="{% url 'more' %}?id={{post.id}}">
+                            <img src="{{ post.image.url }}" alt="">
+                        </a>
+                        {% endif %}
+
+                        <div class="text p-3">
+                                <div>
+                                    <a href="{% url 'more' %}?id={{post.id}}">
+                                        <h6>{{post.title}}</h6>
+                                    </a>
+
+                                    <hr class="mypage-post-hr">
+
+                                    <!-- 좋아요 -->
+                                    <h7>좋아요 {{ post.likes.count}}개</h7>
+
+                                    <hr class="mypage-post-hr">
+                                </div>
+
+                            {{post.content|safe|slice:":10"}}
+                            <a href="{% url 'more' %}?id={{post.id}}">더보기</a>
+
+                            <hr class="mypage-post-hr">
+
+                            <div class="nav ftco-animate nav-pills" id="v-pills-tab" role="tablist"
+                                aria-orientation="vertical">
+                                
+                                {% if user == post.writer %}
+                                <a class="nav-link" id="v-pills-mission-tab" href="{% url 'update' pk=post.pk %}"
+                                    role="tab" aria-controls="v-pills-goal" aria-selected="false">수정하기</a>
+                                    
+                                <a class="nav-link" id="v-pills-mission-tab" href="{% url 'delete' pk=post.pk %}"
+                                    role="tab" aria-controls="v-pills-mission" aria-selected="false">삭제하기</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>

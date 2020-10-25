@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404
 from appname.models import CustomUser
 from shop.models import Item
 class RecipientView(TemplateView):
+    
     template_name = 'core/chat.html'
     def get(self,request,name):
         ctx = {}

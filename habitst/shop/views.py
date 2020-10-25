@@ -18,7 +18,7 @@ from django.http import HttpResponseRedirect
 
 class ItemListView(ListView):
     model = Item
-    queryset = Item.objects.filter(is_public=True)
+    queryset = Item.objects.filter(is_public=True).order_by('-id')
 
     def get_queryset(self):
         self.q = self.request.GET.get('q', '')
@@ -40,15 +40,18 @@ index = ItemListView.as_view()
 # Create your views here.
 
 
-@login_required
+
 def order_new(request, item_id):
+    if not request.user.is_active:
+        return HttpResponse("Can't write a post without Sign In")
     item = get_object_or_404(Item, pk=item_id)
     order = Order.objects.create(user=request.user, item=item, name=item.name, amount=item.amount)
     return redirect('shop:order_pay', item_id, str(order.merchant_uid))
 
 
-@login_required
 def order_pay(request, item_id, merchant_uid):
+    if not request.user.is_active:
+        return HttpResponse("Can't write a post without Sign In")
     order = get_object_or_404(Order, user=request.user, merchant_uid=merchant_uid, status='ready')
     if request.method == 'POST':
         form = PayForm(request.POST, instance=order)
@@ -62,6 +65,8 @@ def order_pay(request, item_id, merchant_uid):
     })
 
 def meet_create(request):
+    if not request.user.is_active:
+        return HttpResponse("Can't write a post without Sign In")
     if request.method == "POST":
         form = ItemForm(request.POST, request.FILES)
         if form.is_valid():

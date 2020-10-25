@@ -58,8 +58,8 @@
             </form>
 
 
-        <li class="nav-item active"><a href="Test" class="nav-link">TEST</a></li>
-          <li class="nav-item active" style="width : 101px;"><a href="shop" class="nav-link">WITH ME</a></li>
+        <li class="nav-item active"><a href="{% url 'Test:main' %}" class="nav-link">TEST</a></li>
+          <li class="nav-item active" style="width : 101px;"><a href="{% url 'shop:index' %}" class="nav-link">WITH ME</a></li>
           <!-- <li class="nav-item active"><a href="{% url 'myblog' %}" class="nav-link">BORAD</a></li> -->
           <li class="nav-item active"><a href="{% url 'postblog' %}" class="nav-link">POST</a></li>
             {% if not user.is_authenticated %}

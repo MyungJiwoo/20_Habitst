@@ -118,7 +118,7 @@ h3{
     background-color: #ffe31b;
 }
 
-/* input{
+input{
     display: inline; 
     font-family: 'GmarketSansMedium';
     color: #03033f;
@@ -129,7 +129,7 @@ h3{
 }
 input:focus{
     outline: none !important;
-} */
+}
 
 #id_rule, #id_desc{
     display: inline; 
