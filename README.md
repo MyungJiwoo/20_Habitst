@@ -49,3 +49,4 @@ HABITST 서비스란?
 >- python -m pip install Pillow
 >- python manage.py runserver
 >- runserver시 no module에 관한 부분은 pip install django_xxxxxx형태로 설치
+>- 배포버전 문의 : 01081916245
