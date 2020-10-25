@@ -36,3 +36,16 @@ HABITST 서비스란?
 ### >withmepayment
 >- Iamport 사용(결제 api)
 >- redis-server 적용(채팅)
+
+실행방법 : 
+1. redis설치 (필수)
+2.pip install django-allauth
+pip install django-crispy-forms
+pip install django-summernote
+pip install iamport-rest-client
+pip install django_social_share
+python -m pip install -U channels
+pip install channels_redis
+python -m pip install Pillow
+python manage.py runserver
+runserver시 no module에 관한 부분은 pip install django_xxxxxx형태로 설치
